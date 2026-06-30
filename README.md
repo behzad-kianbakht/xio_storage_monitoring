@@ -162,6 +162,14 @@ MIT License
 
 ## Author
 
-Behzad Kianbakht
+---
 
-Senior Site Reliability Engineer | Automation Engineer | Python Developer | Monitoring & Observability
+## Author
+
+**Behzad Kianbakht**
+
+Senior Site Reliability Engineer passionate about Automation, Monitoring, Observability, and Python development.
+
+🌐 Portfolio: :contentReference[oaicite:1]{index=1}
+
+If you find this project useful, feel free to ⭐ the repository.
