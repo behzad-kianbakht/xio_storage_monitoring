@@ -154,22 +154,14 @@ For public repositories, credentials should be supplied through environment vari
 
 ---
 
-## License
-
-MIT License
-
----
-
 ## Author
 
 ---
-
-## Author
 
 **Behzad Kianbakht**
 
 Senior Site Reliability Engineer passionate about Automation, Monitoring, Observability, and Python development.
 
-🌐 Portfolio: :contentReference[oaicite:1]{index=1}
+🌐 Portfolio: : https://www.kianbakht.com
 
 If you find this project useful, feel free to ⭐ the repository.
