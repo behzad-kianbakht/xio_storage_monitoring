@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.4</version>
+    <date>2026-06-30T08:04:30Z</date>
+    <groups>
+        <group>
+            <uuid>cc102fc995334f6d8b156ec83f7febb3</uuid>
+            <name>EMC XtremIO Storage</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>c56ae856bca8456f8e34b35ff8a0648c</uuid>
+            <template>EMC XtremIO Strorage</template>
+            <name>EMC XtremIO Strorage</name>
+            <groups>
+                <group>
+                    <name>EMC XtremIO Storage</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>7c5decd4a8df4a659933badc2a913a57</uuid>
+                    <name>ALERT XIO Status</name>
+                    <type>TRAP</type>
+                    <key>ALERT_XIO_Status</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <uuid>59f8a370f93b4bdf830402732ddba8aa</uuid>
+                            <expression>max(/EMC XtremIO Strorage/ALERT_XIO_Status,5m)=0 or nodata(/EMC XtremIO Strorage/ALERT_XIO_Status,5m)=1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>max(/EMC XtremIO Strorage/ALERT_XIO_Status,5m)=1 and nodata(/EMC XtremIO Strorage/ALERT_XIO_Status,5m)=0</recovery_expression>
+                            <name>XIO Alert API Does Not Respond</name>
+                            <priority>HIGH</priority>
+                            <description>XIO ALERT API DOES NOT RESPONSE and ZABBIX CAN NOT Monitor XIO FOR LAST 5 Min. 
+Please Check XIO VM's</description>
+                            <tags>
+                                <tag>
+                                    <tag>CC</tag>
+                                    <value>itsservicedesk@mtnirancell.ir</value>
+                                </tag>
+                                <tag>
+                                    <tag>To</tag>
+                                    <value>#ITS DC Storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>To</tag>
+                                    <value>#ITS PerformanceCapacity Mgmt</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>173424b3fa724164ad809f1ce0d4565b</uuid>
+                    <name>XIO Create Alert</name>
+                    <type>TRAP</type>
+                    <key>XIO_Create_Alert</key>
+                    <delay>0</delay>
+                    <lifetime>180d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>87e4734ab3e34e0ab87d8a0e4fec62f2</uuid>
+                            <name>ALERT [{#SEV} - {#ALERTSTS}] : {#ASSOBJNAME} - {#DISC}</name>
+                            <type>TRAP</type>
+                            <key>alert[{#SEV}-{#ASSOBJNAME}-{#DISC}]</key>
+                            <delay>0</delay>
+                            <description>Alert Class : {#CLASSNAME}
+Alert Type : {#ALERTTYPE}
+Alert State : {#ALERTSTS}
+Sys Name :  {#SYSNAME}</description>
+                            <tags>
+                                <tag>
+                                    <tag>HREF</tag>
+                                    <value>{#HREF}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>3a677ab4ea3c4b7585039f1cfc6411a7</uuid>
+                                    <expression>nodata(/EMC XtremIO Strorage/alert[{#SEV}-{#ASSOBJNAME}-{#DISC}],10m)=0</expression>
+                                    <name>ALERT [{#SEV} - {#ALERTSTS}] : {#ASSOBJNAME} - {#DISC}</name>
+                                    <priority>WARNING</priority>
+                                    <description>---- Alert Class : {#CLASSNAME} ----
+
+Alert Type : {#ALERTTYPE} ----
+
+ Alert State : {#ALERTSTS} ----
+
+Sys Name :  {#SYSNAME}</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>Cc</tag>
+                                            <value>#ITS PerformanceCapacity Mgmt</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Cc</tag>
+                                            <value>itsservicedesk@mtnirancell.ir</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>EventAssignee</tag>
+                                            <value>DC Storage</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>HREF</tag>
+                                            <value>{#HREF}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>To</tag>
+                                            <value>#ITS DC Storage</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>20a92e20a6b34b2da53775c2ba1243e5</uuid>
+                    <name>XIO Create Item N</name>
+                    <type>TRAP</type>
+                    <key>XIO_Create_Item_N</key>
+                    <delay>0</delay>
+                    <lifetime>10d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>468670d74fb54b5ebe415711378a0d58</uuid>
+                            <name>[{#TYPENAME}]_{#OBJNAME}:{#OBJDETAILS}</name>
+                            <type>TRAP</type>
+                            <key>XIO_N_[{#TYPENAME},{#OBJNAME},{#OBJDETAILS}]</key>
+                            <delay>0</delay>
+                            <value_type>FLOAT</value_type>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>098bec2b55734b25bce6e416dcabb018</uuid>
+                    <name>XIO Create Item S</name>
+                    <type>TRAP</type>
+                    <key>XIO_Create_Item_S</key>
+                    <delay>0</delay>
+                    <lifetime>10d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>7a364b0d278d49bfa5619b2be6627ca8</uuid>
+                            <name>[{#TYPENAME}]_{#OBJNAME}:{#OBJDETAILS}</name>
+                            <type>TRAP</type>
+                            <key>XIO_S_[{#TYPENAME},{#OBJNAME},{#OBJDETAILS}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <tags>
+                <tag>
+                    <tag>Model</tag>
+                    <value>XIO</value>
+                </tag>
+                <tag>
+                    <tag>Type</tag>
+                    <value>Storage</value>
+                </tag>
+            </tags>
+            <macros>
+                <macro>
+                    <macro>{$SERVICENAME}</macro>
+                    <value>XIO Storage</value>
+                </macro>
+                <macro>
+                    <macro>{$XIONAME}</macro>
+                    <value>{HOST.NAME}</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+</zabbix_export>
